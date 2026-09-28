@@ -1,0 +1,16 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+.agent-cache
+.git
+.github
+.env
+*.pptx
+*.png
+*.jpg
+outputs/
+output_files/
+research_output/
+tests/

@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches and virtual environments
+.pytest_cache/
+.agent-cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+ENV/
+env/
+
+# Environment and sensitive files
+.env
+*.local
+
+# Database and vector indexes (runtime generated)
+*.db-journal
+*.log
+
+# Output artifacts
+/output_files/
+/outputs/capsules/
+/research_output/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini

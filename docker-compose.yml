@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  aion-x:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aion_x_discovery_engine
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    environment:
+      - TURBO_MODE=1
+      - STAGE_TIMEOUT=25
+      - CAUSAL_VALIDATION_ENABLED=1
+      - REPLICATION_ENABLED=1
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+    volumes:
+      - ./ctsd_memory.db:/app/ctsd_memory.db
+      - ./outputs:/app/outputs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

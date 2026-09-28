@@ -1,0 +1,9 @@
+@echo off
+echo 🧠 Starting Local Sovereign AI Engine (Ollama)...
+start cmd /k "ollama serve"
+
+echo ⏳ Waiting for AI Engine to initialize...
+timeout /t 3 /nobreak >nul
+
+echo 🔬 Launching Autonomous Research Command Center...
+python main.py --ui
