@@ -198,10 +198,23 @@ REPLICATION_ENABLED=1
 ```
 
 ### 4. Run the Engine
+
+#### Option A: Native Local Run
 ```bash
 streamlit run app.py
 ```
-Open your browser at `http://localhost:8501`.
+Or run `deploy.bat` on Windows. Open your browser at `http://localhost:8501`.
+
+#### Option B: Docker Containerized Deployment
+```bash
+# Build and run with Docker Compose (one-click)
+docker compose up --build -d
+```
+
+#### Option C: Run the 82+ Automated Test Gauntlet
+```bash
+pytest -v
+```
 
 ---
 
