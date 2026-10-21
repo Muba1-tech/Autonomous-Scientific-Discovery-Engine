@@ -22,6 +22,8 @@ _ollama_status_cache = {"alive": None, "last_check": 0}
 
 def _check_ollama_liveness() -> bool:
     """Checks if local Ollama server is active with a quick 0.3-second ping."""
+    if os.environ.get("TURBO_MODE") == "1":
+        return False
     now = time.time()
     if _ollama_status_cache["alive"] is not None and (now - _ollama_status_cache["last_check"] < 60):
         return _ollama_status_cache["alive"]
@@ -80,6 +82,8 @@ def fallback_cloud_call(prompt: str, model: str = "gemini", temperature: float =
 
 def fast_ollama_call(prompt: str, model: str = "llama3:latest", temperature: float = 0.3, top_p: float = 0.9, timeout: float = 35.0) -> str:
     """Calls local Ollama with generous timeout for real-time local neural inference."""
+    if os.environ.get("TURBO_MODE") == "1":
+        return ""
     if not _check_ollama_liveness():
         return ""
         

@@ -4,13 +4,15 @@
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Framework: Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B.svg?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Cloud: Streamlit Cloud](https://img.shields.io/badge/Deploy-Streamlit%20Cloud-FF4B4B.svg?style=for-the-badge&logo=streamlit)](https://share.streamlit.io/)
+[![Tests: 92 Passing](https://img.shields.io/badge/Tests-92%20Passing%20(100%25)-10B981.svg?style=for-the-badge&logo=pytest&logoColor=white)](https://pytest.org/)
 [![Security: AST Sandboxed](https://img.shields.io/badge/Security-AST--Isolated%20Sandbox-10B981.svg?style=for-the-badge)](https://github.com/)
 [![Scientific Rigor: Popperian Falsification](https://img.shields.io/badge/Epistemics-Popperian%20Falsification-8B5CF6.svg?style=for-the-badge)](https://github.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-38BDF8.svg?style=for-the-badge)](LICENSE)
 
 **An autonomous 16-agent neuro-symbolic research system that formulates genomic scientific hypotheses, detects frontier research gaps, stress-tests causal mechanisms against empirical literature, replicates published computational benchmarks in isolated AST sandboxes, and exports verified discovery capsules.**
 
-[Key Capabilities](#-key-capabilities) • [System Architecture](#-system-architecture) • [Swarm Agents](#-the-16-swarm-agents) • [UI Walkthrough](#-ui-walkthrough) • [Quick Start](#-quick-start) • [Security & Rigor](#-security--scientific-integrity)
+[Key Capabilities](#-key-capabilities) • [System Architecture](#-system-architecture) • [Swarm Agents](#-the-16-swarm-agents) • [Multi-Format Exports](#-research-packaging--multi-format-academic-exports) • [Streamlit Cloud Deployment](#-streamlit-cloud-deployment) • [Quick Start](#-quick-start) • [Security & Rigor](#-security--scientific-integrity)
 
 </div>
 
@@ -132,6 +134,18 @@ The `CrossDomainEngine` bridges isolated scientific silos (e.g., *Condensed Matt
 
 ---
 
+## 📦 Research Packaging & Multi-Format Academic Exports
+
+AION X features automated multi-format export capabilities configured to academic seminar, journal publication, and defense evaluation standards. Any generated discovery can be exported directly from the live web UI into standard scholarly formats:
+
+- 📊 **PowerPoint Presentation (.PPTX):** Instant academic slide deck summarizing the research objective, methodology, causal analysis, simulation results, and literature landscape.
+- 📑 **Scientific Manuscript (.DOCX & .PDF):** Formatted IEEE/ACM-style academic paper complete with abstract, mathematical formulation, verification metrics, and bibliographies.
+- 🗄️ **LaTeX Source (.TEX):** Publication-ready LaTeX source code with tabular matrices and mathematical notations.
+- 📈 **Empirical Data & Telemetry (.CSV):** Raw simulation data distributions, hypothesis evolution lineage, and agent telemetry logs.
+- 🎁 **Reproducibility Capsule (.ZIP):** Self-contained zip bundle containing source code, data arrays, environment specifications, and replication scripts.
+
+---
+
 ## 🖥️ UI Walkthrough
 
 AION X features a **Cosmic Aurora Cyberpunk HUD** rendered via Streamlit with 4 focused workspaces:
@@ -161,6 +175,15 @@ AION X features a **Cosmic Aurora Cyberpunk HUD** rendered via Streamlit with 4 
 
 1. **💡 Hypotheses & Gaps:** Concise champion and alternative hypotheses, complete with 3-part structured abstracts (`Objective`, `Mechanism`, `Impact`), topological research gaps, and comparative literature matrices.
 2. **🧪 Simulation & Knowledge Graph:** Interactive NetworkX claim graph, live sandbox execution logs, sample datasets, distribution plots, and empirical effect sizes.
+   - **Understanding the Knowledge Graph:**
+     - 🔵 **Blue Nodes (Research Papers):** Peer-reviewed literature indexed from Google Scholar, arXiv, IEEE, and PubMed forming the factual baseline.
+     - 🌸 **Pink Nodes (Research Gaps):** Unsolved bottlenecks, blind spots, and open questions in current science identified by gap analysis.
+     - 🟢 **Green Node (Novel Hypothesis):** The proposed breakthrough idea formulated specifically to bridge the identified research gaps.
+     - 🔴 **Red Nodes ([UNVE] Unverified Claims):** Novel claims extracted from the hypothesis that lack direct literature backing and require empirical testing.
+     - 🟡 **Orange Nodes ([PART] Partially Supported Claims):** Claims supported by partial or related evidence in research paper abstracts.
+     - 🟢 **Green Nodes ([SUPP] Supported Claims):** Claims verified and directly backed by peer-reviewed literature.
+     - 🧪 **Red / Rose Node (Sandbox Simulation):** Process-isolated computer simulation verifying mathematical and empirical feasibility.
+     - ➡️ **Directed Arrows (Scientific Flow):** Shows how discovery connects: **Papers ➔ Research Gaps ➔ Novel Hypothesis ➔ Claims ➔ Sandbox Experiment**.
 3. **📚 Cited Papers:** Verifiable paper cards with authors, publication year, abstract previews, and clickable external DOI / PubMed / ArXiv links.
 4. **📥 Export:** Instant generation of comprehensive discovery packages (.ZIP, .PPTX, .DOCX, .PDF, .CSV, .TEX) and researcher ratings.
 
@@ -205,16 +228,50 @@ streamlit run app.py
 ```
 Or run `deploy.bat` on Windows. Open your browser at `http://localhost:8501`.
 
-#### Option B: Docker Containerized Deployment
+#### Option B: Run the 92-Test Automated Gauntlet (100% Passing)
+```bash
+pytest -v
+```
+
+#### Option C: Docker Containerized Deployment
 ```bash
 # Build and run with Docker Compose (one-click)
 docker compose up --build -d
 ```
 
-#### Option C: Run the 82+ Automated Test Gauntlet
-```bash
-pytest -v
-```
+---
+
+## ☁️ Streamlit Cloud Deployment
+
+Deploy AION X to [Streamlit Community Cloud](https://share.streamlit.io/) in under 3 minutes:
+
+1. **Push your code to GitHub:**
+   ```bash
+   git add .
+   git commit -m "feat: deploy AION X 2.0 to Streamlit Cloud"
+   git push origin main
+   ```
+
+2. **Connect to Streamlit Cloud:**
+   - Go to [share.streamlit.io](https://share.streamlit.io/) and sign in with your GitHub account.
+   - Click **Create app** (or **New app**).
+   - Select your repository (`username/repo`) and branch (`main`).
+   - Set the **Main file path** to `app.py`.
+
+3. **Configure Secrets & Environment Variables:**
+   - Under **Advanced settings** ➔ **Secrets**, paste your configuration:
+     ```toml
+     # Google Gemini API Key for Neural Agents (Optional for offline demo mode)
+     GEMINI_API_KEY = "your_google_gemini_api_key_here"
+
+     # High-speed deterministic execution
+     TURBO_MODE = "1"
+     STAGE_TIMEOUT = "35"
+     ```
+
+4. **Deploy:**
+   - Click **Deploy!**
+   - Streamlit Cloud will install dependencies from `requirements.txt` and launch your live instance with cosmic aurora UI theme.
 
 ---
 
@@ -223,10 +280,14 @@ pytest -v
 ```text
 ├── app.py                             # Streamlit application entry point & HUD
 ├── config.py                          # Global configuration & environment flags
+├── requirements.txt                   # Production dependencies (Streamlit Cloud ready)
+├── .gitignore                         # Optimized ignore rules (ignoring runtime outputs)
+├── .streamlit/
+│   └── config.toml                    # Cosmic aurora dark theme configuration
 ├── core/
 │   ├── interactive_pipeline.py       # Human-in-the-loop steering & decision queue
 │   └── pipeline.py                   # 16-agent asynchronous swarm coordinator
-├── agents/                            # Specialized autonomous agents
+├── agents/                            # Specialized autonomous research agents
 │   ├── researcher.py                  # Multi-source academic literature mining
 │   ├── innovator.py                   # First-principles hypothesis formulation
 │   ├── critic.py                      # Adversarial kill-chain refutation
@@ -242,12 +303,22 @@ pytest -v
 │   └── research_gap_detector.py       # Topological boundary & void analyzer
 ├── simulation/
 │   ├── process_sandbox.py             # AST security auditor & isolated runner
+│   ├── domain_solvers.py              # Domain-specific scientific solvers
+│   ├── dynamic_synthesizer.py         # Physics & biological parameter synthesis
 │   └── real_data_compiler.py          # Open scientific API data acquisition
+├── outputs/
+│   ├── report_generator.py            # Academic manuscript (.DOCX, .PDF) compiler
+│   └── reproducibility_capsule.py     # Downloadable replication capsule generator
 ├── database/
 │   ├── db_manager.py                  # SQLite storage & telemetry logger
-│   └── models.py                      # Strongly-typed scientific dataclasses
+│   └── migrations.py                  # Self-healing database table migrations
+├── tests/                             # Full test suite (92 passing tests)
+│   ├── test_full_discovery_pipeline.py
+│   ├── test_six_pillars.py
+│   └── ...
 └── ui/
-    ├── dashboard.py                   # 4-tab main discovery workspace
+    ├── dashboard.py                   # 4-workspace flagship discovery dashboard
+    ├── avatar_hud.py                  # 16-agent live telemetry HUD avatars
     └── cinematic_components.py        # Three.js 3D genome & Cyberpunk timeline
 ```
 

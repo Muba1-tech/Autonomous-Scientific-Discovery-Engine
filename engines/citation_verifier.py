@@ -44,10 +44,22 @@ class CitationVerifier:
         except Exception:
             pass
 
-        # Fallback regex sentence extraction
-        sentences = re.split(r'(?<=[.!?]) +', text[:1500])
-        factual_sentences = [s.strip() for s in sentences if len(s.strip()) > 10 and not s.startswith('#')]
-        return factual_sentences[:4] if factual_sentences else [text.strip()]
+        # Structured section parsing fallback (Objective, Mechanism, Impact, Claims)
+        raw_candidates = []
+        for line in text[:2000].splitlines():
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            cleaned = re.sub(r'^(Objective|Mechanism|Impact|Prediction|Hypothesis|Finding|Result|Abstract):\s*', '', line, flags=re.IGNORECASE)
+            cleaned = re.sub(r'^[-*•\d\.]+\s*', '', cleaned).strip()
+            if len(cleaned) > 20:
+                raw_candidates.append(cleaned)
+
+        if not raw_candidates:
+            sentences = re.split(r'(?<=[.!?])\s+', text[:1500])
+            raw_candidates = [s.strip() for s in sentences if len(s.strip()) > 15 and not s.startswith('#')]
+
+        return raw_candidates[:5] if raw_candidates else [text.strip()[:140]]
 
     def verify_claims(self, text: str, papers: List[Dict[str, Any]]) -> VerificationResult:
         """

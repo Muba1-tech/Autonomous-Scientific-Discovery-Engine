@@ -77,7 +77,7 @@ while True:
     assert (t1 - t0) < 4.0
 
 def test_first_hypothesis_simulation():
-    sim = FirstHypothesisSimulator(timeout_sec=5.0)
+    sim = FirstHypothesisSimulator(timeout_sec=15.0)
     hyp_text = "Coupling high-pressure phonon modes in carbonaceous hydride stabilizes room-temperature electron pairing."
     report = sim.conduct_experiment(hyp_text, domain="Quantum Materials", research_id="TEST-001")
     

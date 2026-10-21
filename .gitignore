@@ -20,11 +20,17 @@ env/
 # Database and vector indexes (runtime generated)
 *.db-journal
 *.log
+*.index
+*.sqlite-journal
 
-# Output artifacts
-/output_files/
-/outputs/capsules/
-/research_output/
+# Output artifacts & Presentations
+*.pptx
+*.zip
+output_files/*
+!output_files/.gitkeep
+research_output/*
+!research_output/.gitkeep
+outputs/capsules/*
 
 # OS specific files
 .DS_Store

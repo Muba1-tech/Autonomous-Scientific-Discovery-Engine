@@ -45,7 +45,8 @@ BANNED_CALLS = {
 
 BANNED_ATTRS = {
     "__subclasses__", "__bases__", "__mro__", "__globals__", "__code__",
-    "__builtins__", "__import__", "__class__", "__loader__", "__spec__"
+    "__builtins__", "__import__", "__class__", "__loader__", "__spec__",
+    "__dict__", "__closure__", "__reduce__", "__reduce_ex__"
 }
 
 
@@ -181,9 +182,20 @@ class IsolatedProcessSandbox:
     Spawns Python code in a separate process, strictly enforces AST validation
     and timeout limits, and cleanly kills the process without affecting the parent application.
     """
-    def __init__(self, timeout_sec: float = 6.0):
+    def __init__(self, timeout_sec: float = 6.0, use_docker_if_available: bool = False):
         self.timeout_sec = timeout_sec
+        self.use_docker_if_available = use_docker_if_available
         self.auditor = ASTSecurityAuditor()
+        self._docker_available = self._check_docker_available()
+
+    def _check_docker_available(self) -> bool:
+        if os.environ.get("DISABLE_DOCKER_SANDBOX") == "1":
+            return False
+        try:
+            res = subprocess.run(["docker", "version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=1.0)
+            return (res.returncode == 0)
+        except Exception:
+            return False
 
     def kill_process_tree(self, proc: subprocess.Popen):
         """Forcefully kills the child process and any spawned descendants."""
